@@ -1,0 +1,214 @@
+@import "../components/menu-icon";
+
+nav.navbar {
+	background-color: $primary_color_1;
+	padding-top: 15px;
+	padding-bottom: 15px;
+		.brand{
+			h2{
+				color: white;
+				font-family: 'RowanMaskide';
+				text-decoration: none;
+			}
+		}
+		.nav-content {
+			.nav-item{
+				.login-icons{
+					width: 24px;
+				}
+				.btn-secondary {
+					display: flex;
+					align-items: center;
+					color: white;
+					background-color: white;
+					border-color: none;
+					border-radius: 40px;
+					padding: 5px 24px;
+					font-size: 20px;
+					font-family: 'CervoNeueBoldNeue';
+					color: black;
+					h3{
+						font-size: 20px;
+						font-family: 'CervoNeueBoldNeue';
+						color: $primary_color_1;
+					}
+					&:hover{
+						background-color: transparent;
+						border: 1px solid white;
+						h3{
+							color: white;
+						}
+					}
+					
+
+				}
+				.dropdown-menu {
+					.dropdown-item{
+						cursor: pointer;
+						color: $primary_color_1;
+						text-decoration: none;
+						background-color: transparent;
+						&:hover{
+							color: white;
+							background-color: $primary_color_1;
+						}
+					}
+				}
+					.link_header{
+						font-size: 20px;
+						font-family: 'CervoNeueBoldNeue';
+						color: white;
+						&:hover{
+							color:white;
+							text-decoration: none;
+						}
+	
+					}
+					.link_header::after{
+					   content :"";
+					   display: block;
+					   width:0px;
+					   height :3px;
+					   background-color: white;
+					   transition: width .3s;
+					}
+					.link_header:hover::after{
+					   transition: width .3s;
+					   width: 100%;
+					   margin-top: 10px;
+					}
+				 
+			}
+
+			.nav-item , .nav-item-button {
+				padding-left: 50px;
+			}
+			.nav-item-button {
+				.signin_button{
+
+					.button_signin{
+						padding: 7px 23px;
+						border-radius: 20px;
+						background-color: yellow;
+						font-size: 20px;
+						font-family: 'CervoNeueBoldNeue';
+						color: white;
+						&:hover{
+							border:  1px solid black;
+							background-color: white;
+							color: black;
+						}
+					}
+				}
+			}
+
+		}
+		.menu-icon-wrapper svg path {
+			stroke:  white;
+		}
+
+	.nav-content {
+		margin-bottom: 0;
+		margin-left: auto;
+		@include flex(space-between, center);
+
+		.nav-item {
+			.nav-link {
+				color: white;
+				padding: 15px 22px;
+				position: relative;
+				
+				&:hover,
+				&.active {
+					font-family: italic;
+					&::after {
+						content: "";
+						position: absolute;
+						bottom: 5px;
+						left: 50%;
+						transform: translateX(-50%);
+						width: 20px;
+						height: 2px;
+						background: $white;
+					}
+				}
+			}
+		}
+	}
+
+	@include for-size(tablet-portrait-down) {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		.nav-content {
+			background-color: $primary_color_1;
+			position: fixed;
+			top: 0;
+			left: -900px;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			flex-direction: column;
+			justify-content: center;
+			transition: left 400ms ease-in;
+			z-index: 9;
+			margin: 0;
+
+			.nav-item {
+					margin-bottom: 40px;
+					padding-left: 0px !important;
+					a{
+						font-size: 30px;
+					}
+			}
+
+			&.is-active {
+				left: 0;
+				transition: left 400ms ease-out;
+			}
+		}
+		&.navbar-light {
+			.nav-content {
+				background-image: none;
+				background-color: $white;
+
+			}
+
+		}
+		.menu-icon-wrapper {
+			display: block !important;
+		}
+		padding-top: 10px;
+		padding-bottom: 10px;
+
+	}
+}
+
+
+
+.button_header{
+	padding: 9px 20px;
+    border-radius: 25px;
+	cursor: pointer;
+	outline: none;
+
+}
+.btn_login{
+	background-color: transparent;
+	border: 1px solid white;
+	padding: 7px 20px;
+	color: white !important;
+	&:hover{
+		background-color: white;
+		color:$primary_color_1 !important;
+	}
+
+}
+.btn_inscription{
+	color: $primary_color_1;
+	&:hover{
+		background-color: transparent;
+		border: 1px solid white;
+		padding: 8px 20px;
+		color: white;
+	}
+}

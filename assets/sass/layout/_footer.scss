@@ -1,0 +1,91 @@
+footer{
+    background-color: $primary_color_1;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: white !important;
+    .logo-footer{
+        h1 {
+            font-family: 'RowanMaskide';
+            font-size: 50px;
+            position: relative;
+            bottom: 12px;
+        }
+    }
+    p{
+        font-family: 'Poping-rugelar';
+        font-size: 13px;
+        line-height: 18px;
+    }
+
+    h2{
+        font-family: 'Poping-bold';
+        font-size: 25px;
+        font-style: normal;
+    }
+    h5{
+        color: white;
+    }
+    a{
+        color: black;
+        cursor: pointer;
+        &:hover{
+            color: white;
+            text-decoration: none;
+        }
+    }
+    .email-footer,.message-footer{
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 7px;
+        padding-left: 10px;
+        padding: 10px;
+    }
+    .email-footer{
+        height: 40px;
+        margin-bottom: 20px;
+
+    }
+    ::placeholder{
+        font-size: 20px;
+        padding-left: 20px;
+    }
+    .message-footer{
+        height: 100px;
+    }
+    .phone,.email{
+        display: flex;
+        .footer-icons{
+            width: 20px;
+        }
+        h6{
+            padding-left: 10px;
+            padding-top: 5px;
+        }
+    }
+    .link-footer,.contact-footer{
+        text-align: center;
+    }
+    .contact-btn{
+        margin-top: 20px;
+        font-family: 'Poping-semibold';
+        font-size: 15px;
+        padding: 8px 24px;
+        background-color: white;
+        color: black;
+        cursor: pointer;
+        border-radius:7px ;
+        &:hover{
+            background-color: black;
+            color: white;
+        }
+    }
+    @include for-size(tablet-portrait-down ){
+            .phone-email-footer{
+                text-align: center;
+                padding-bottom: 30px;
+            }
+            .link-footer{
+                padding-bottom: 30px;
+            }
+    }
+}
