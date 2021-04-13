@@ -1,6 +1,6 @@
 <?php
 
-include "../modele/connect.php";
+include "connect.php";
 
 class crud extends DB{
     public $table;
@@ -76,12 +76,6 @@ class crud extends DB{
         
     } 
 }
-
-// $requet_1 = new crud("client");
-// $sql_exucete = $requet_1->update(["name"=> "tbdlaaat" , "cin"=>"men" , "phone" => "+78367353532" , "id_commande" => "HDGD7777" , "adresse" => 'hay elfarah', "date_commande" => "19/09/77636"],11);
-
-
-
 
 
 

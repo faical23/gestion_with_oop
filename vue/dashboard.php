@@ -1,5 +1,5 @@
 <?php
-    include "../controleur/controle.php";
+    include "../modele/db.php";
 
 ?>
 
@@ -83,12 +83,13 @@
                                 <th>cin</th>
                                 <th>phone</th>
                                 <th>role</th>
-                                <th>salire_day</th>
+                                <th>salaire_day</th>
                                 <?php
                             }
                             else if($manage == "client") 
                             {
                         ?>
+                                 <th>cin</th>
                                 <th>phone</th>
                                 <th>id_commande</th>
                                 <th>adresse</th>
@@ -100,21 +101,59 @@
                         <?php
                         }
 
-                                $requet_1 = new crud("medicale");
-                                $medicale = $requet_1->select();
+                                $requet_1 = new crud($manage);
+                                $execution= $requet_1->select();
                                 $i = 1;
-                                  foreach ($medicale as $value) {                                      
+                                  foreach ($execution as $value) {                                      
                             ?>
 
 						</tr>
 											</td>
-                                            <td class="AR"><?php  echo $i ?></td>
-											<td class="AR"><?php  echo $value["name"] ?></td>
-											<td class="titre"><?php  echo $value["category"] ?></td>
-                                            <td class="auteur"> <?php  echo $value["prix"]?> </td>
-                                            <td class="date"><?php  echo $value["quantity"] ?></td>
-                                            <td class="titre"><?php  echo $value["expiration"] ?></td>
-                                            <td class="auteur"> <?php  echo $value["code"] ?> </td>
+                                            <?php
+                                            if($manage == "medicale" || $manage == "employe" || $manage == "client")
+                                                {
+                                            ?>
+                                                <td class="AR"><?php  echo $i ?></td>
+                                                <td class="AR"><?php  echo $value["name"] ?></td>
+
+                                             <?php
+                                                if($manage == "medicale")
+                                                {
+                                            ?> 
+                                                <td class="titre"><?php  echo $value["category"] ?></td>
+                                                <td class="auteur"> <?php  echo $value["prix"]?> </td>
+                                                <td class="date"><?php  echo $value["quantity"] ?></td>
+                                                <td class="titre"><?php  echo $value["expiration"] ?></td>
+                                                <td class="auteur"> <?php  echo $value["code"]  ?> </td>
+
+                                            <?php
+                                                }
+                                                if($manage == "employe")
+                                                {
+                                            ?> 
+                                                
+                                                <td class="titre"><?php  echo $value["cin"] ?></td>
+                                                <td class="auteur"> <?php  echo $value["phone"]?> </td>
+                                                <td class="date"><?php  echo $value["role"] ?></td>
+                                                <td class="titre"><?php  echo $value["salaire_day"] . "$"?></td>
+
+                                                <?php
+                                                }
+                                                if($manage == "client")
+                                                {
+                                            ?> 
+                                                
+                                                <td class="titre"><?php  echo $value["cin"] ?></td>
+                                                <td class="auteur"> <?php  echo $value["phone"]?> </td>
+                                                <td class="date"><?php  echo $value["id_commande"] ?></td>
+                                                <td class="titre"><?php  echo $value["adresse"] ?></td>
+                                                <td class="titre"><?php  echo $value["date_commande"]?></td>
+
+
+                                            <?php
+                                                }
+                                            ?> 
+
 											<td>
 												<div class="icon_crud">
 													<a href="#">
@@ -123,11 +162,16 @@
 													<a href="#">
 														<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></svg>
 													</a>
-													<a href="#">
+													<a  onclick="delete_popup(<?php echo $value['id']?>,'<?php echo $manage?>')">
 														<svg  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>
 													</a>
 												</div>
 											</td>
+
+
+                                            <?php
+                                                }
+                                            ?>  
 						</tr>
                         <?php
                               $i++;
@@ -152,28 +196,28 @@
 
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
+            function delete_popup(id_user,manage) {
+                console.log("its wokr");
 
-        var search = () =>{
-            let category =document.querySelector(".inpsearch").value;
-            window.location ="dashboard.php?category=" + category;
-            console.log(category);
-        }
+            swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = `../controleur/delete.php?manage=${manage}&id=${id_user}`;
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
 
-        // var search = () =>{
-        //     let category = document.querySelector(".category_search").value;
-        //     // window.location ="index.php?topic=" + valide_input_value;
-        //     console.log(category);
-        // }
-
-        // let valide_input = document.querySelector(".valide_input");
-        // valide_input.addEventListener("click", () =>{
-        //     let valide_input_value = document.querySelector(".valide_input");
-        //     console.log(valide_input_value.value);
-        //     // window.location ="index.php?topic=" + topic;
-        // })
-
+            }        
     </script>
 </body>
 </html>
