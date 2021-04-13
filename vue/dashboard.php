@@ -38,7 +38,16 @@
             <div class="col-xxl-10 col-xl-10 col-lg-9 col-md-8 col-sm-8 col-sm-12">
             <div class="centent_dashboard" id="dashboard_on">
                 <div class="manage_post">
-                    <input name="search"  placeholder="search" style="border:1px solid black">
+                <h2>Search</h2>
+										<input type="text" class="inpsearch" list="mysearch" placeholder="All category">
+                                            <datalist id="mysearch">
+                                                <option value="All category">
+                                                <option value="hair_medicale">
+                                                <option value="face_medicale">
+                                                <option value="food_medicale">
+                                                <option value="eyes_medicale">
+                                            </datalist>
+                                        <button class="category_search" onclick="search()">Valide</button>
                 <h1>Manage MEDICALE</h1>
 
                 <button>Add medicale</button>
@@ -56,8 +65,16 @@
                             <th>Action</th>
 
                             <?php
+
+                                $category = $_GET['category'];
                                 $requet_1 = new crud("medicale");
-                                $medicale = $requet_1->select();
+                                if($category == "" || $category == "All category")
+                                {
+                                    $medicale = $requet_1->select();
+                                }
+                                else{
+                                    $medicale = $requet_1->select(["category" => $category]);
+                                }
                                 $i = 1;
                                   foreach ($medicale as $value) {                                      
                             ?>
@@ -108,5 +125,28 @@
 
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+
+        var search = () =>{
+            let category =document.querySelector(".inpsearch").value;
+            window.location ="dashboard.php?category=" + category;
+            console.log(category);
+        }
+
+        // var search = () =>{
+        //     let category = document.querySelector(".category_search").value;
+        //     // window.location ="index.php?topic=" + valide_input_value;
+        //     console.log(category);
+        // }
+
+        // let valide_input = document.querySelector(".valide_input");
+        // valide_input.addEventListener("click", () =>{
+        //     let valide_input_value = document.querySelector(".valide_input");
+        //     console.log(valide_input_value.value);
+        //     // window.location ="index.php?topic=" + topic;
+        // })
+
+    </script>
 </body>
 </html>
