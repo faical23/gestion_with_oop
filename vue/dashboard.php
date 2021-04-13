@@ -10,6 +10,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <title>Dashboard</title>
@@ -20,61 +22,86 @@
         <div class="row">
             <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-4 col-sm-12">
                 <div class="side_bar">
-                    <a href="#">
+                    <a href="dashboard.php?manage=medicale">
                         <div class="item_menu">Manage medicale</div>
-                    </a">
-                    <a href="#">
+                    </a>
+                    <a  href="dashboard.php?manage=employe">
                         <div class="item_menu">Manage employe</div>
                     </a>
-                    <a href="#">
+                    <a  href="dashboard.php?manage=client">
                         <div class="item_menu">Manage client</div>
                     </a>
-                    <a href="#">
+                    <a  href="dashboard.php?manage=commande">
                         <div class="item_menu">Manage commande</div>
                     </a>
                 </div>
 
             </div>
             <div class="col-xxl-10 col-xl-10 col-lg-9 col-md-8 col-sm-8 col-sm-12">
+                <?php
+
+                    $manage = $_GET["manage"];
+                
+                ?>
             <div class="centent_dashboard" id="dashboard_on">
                 <div class="manage_post">
-                <h2>Search</h2>
-										<input type="text" class="inpsearch" list="mysearch" placeholder="All category">
-                                            <datalist id="mysearch">
-                                                <option value="All category">
-                                                <option value="hair_medicale">
-                                                <option value="face_medicale">
-                                                <option value="food_medicale">
-                                                <option value="eyes_medicale">
-                                            </datalist>
-                                        <button class="category_search" onclick="search()">Valide</button>
-                <h1>Manage MEDICALE</h1>
+                <h1>MANAGE <?php echo  strtoupper($manage) ?></h1>
 
-                <button>Add medicale</button>
+                <?php
+                    if($manage == "medicale" || $manage == "employe" || $manage == "commande" ) 
+                    {
+                ?>
+                    <button>Add <?php echo  $manage ?></button>
+                <?php
+                    }
+                ?>
 
                 <div class="table_post">
                 <table cellspacing="0" cellpadding="0">
 						<tr>
+                        <?php
+                        if($manage == "medicale" || $manage == "employe" || $manage == "client")
+                        {
+                        ?>
                             <th>AR</th>
                             <th>Name</th>
-                            <th>Catégory</th>
-                            <th>Prix</th>
-                            <th>Quantity</th>
-                            <th>EXprition</th>
-                            <th>Code</th>
+
+                        <?php
+                            if($manage == "medicale") 
+                            {
+                        ?>
+                                <th>Catégory</th>
+                                <th>Prix</th>
+                                <th>Quantity</th>
+                                <th>EXprition</th>
+                                <th>Code</th>
+                        <?php
+                            }
+                            else if($manage == "employe") 
+                            {
+                        ?>
+                                <th>cin</th>
+                                <th>phone</th>
+                                <th>role</th>
+                                <th>salire_day</th>
+                                <?php
+                            }
+                            else if($manage == "client") 
+                            {
+                        ?>
+                                <th>phone</th>
+                                <th>id_commande</th>
+                                <th>adresse</th>
+                                <th>date_commande</th>
+                        <?php
+                            }
+                        ?>
                             <th>Action</th>
+                        <?php
+                        }
 
-                            <?php
-
-                                $category = $_GET['category'];
                                 $requet_1 = new crud("medicale");
-                                if($category == "" || $category == "All category")
-                                {
-                                    $medicale = $requet_1->select();
-                                }
-                                else{
-                                    $medicale = $requet_1->select(["category" => $category]);
-                                }
+                                $medicale = $requet_1->select();
                                 $i = 1;
                                   foreach ($medicale as $value) {                                      
                             ?>
