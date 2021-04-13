@@ -39,152 +39,181 @@
             </div>
             <div class="col-xxl-10 col-xl-10 col-lg-9 col-md-8 col-sm-8 col-sm-12">
                 <?php
-
                     $manage = $_GET["manage"];
-                
                 ?>
-            <div class="centent_dashboard" id="dashboard_on">
-                <div class="manage_post">
-                <h1>MANAGE <?php echo  strtoupper($manage) ?></h1>
+                <div class="centent_dashboard" id="dashboard_on">
+                    <div class="manage_post">
+                    <h1>MANAGE <?php echo  strtoupper($manage) ?></h1>
 
-                <?php
-                    if($manage == "medicale" || $manage == "employe" || $manage == "commande" ) 
-                    {
-                ?>
-                    <button>Add <?php echo  $manage ?></button>
-                <?php
-                    }
-                ?>
-
-                <div class="table_post">
-                <table cellspacing="0" cellpadding="0">
-						<tr>
-                        <?php
-                        if($manage == "medicale" || $manage == "employe" || $manage == "client")
+                    <?php
+                        if($manage == "medicale" || $manage == "employe" || $manage == "commande" ) 
                         {
-                        ?>
-                            <th>AR</th>
-                            <th>Name</th>
-
-                        <?php
-                            if($manage == "medicale") 
-                            {
-                        ?>
-                                <th>Catégory</th>
-                                <th>Prix</th>
-                                <th>Quantity</th>
-                                <th>EXprition</th>
-                                <th>Code</th>
-                        <?php
-                            }
-                            else if($manage == "employe") 
-                            {
-                        ?>
-                                <th>cin</th>
-                                <th>phone</th>
-                                <th>role</th>
-                                <th>salaire_day</th>
-                                <?php
-                            }
-                            else if($manage == "client") 
-                            {
-                        ?>
-                                 <th>cin</th>
-                                <th>phone</th>
-                                <th>id_commande</th>
-                                <th>adresse</th>
-                                <th>date_commande</th>
-                        <?php
-                            }
-                        ?>
-                            <th>Action</th>
-                        <?php
+                    ?>
+                        <button>Add <?php echo  $manage ?></button>
+                    <?php
                         }
+                    ?>
 
-                                $requet_1 = new crud($manage);
-                                $execution= $requet_1->select();
-                                $i = 1;
-                                  foreach ($execution as $value) {                                      
+                    <div class="table_post">
+                    <table cellspacing="0" cellpadding="0">
+                            <tr>
+                            <?php
+                            if($manage == "medicale" || $manage == "employe" || $manage == "client")
+                            {
                             ?>
+                                <th>AR</th>
+                                <th>Name</th>
 
-						</tr>
-											</td>
-                                            <?php
-                                            if($manage == "medicale" || $manage == "employe" || $manage == "client")
-                                                {
-                                            ?>
-                                                <td class="AR"><?php  echo $i ?></td>
-                                                <td class="AR"><?php  echo $value["name"] ?></td>
+                            <?php
+                                if($manage == "medicale") 
+                                {
+                            ?>
+                                    <th>Catégory</th>
+                                    <th>Prix</th>
+                                    <th>Quantity</th>
+                                    <th>EXprition</th>
+                                    <th>Code</th>
+                            <?php
+                                }
+                                else if($manage == "employe") 
+                                {
+                            ?>
+                                    <th>cin</th>
+                                    <th>phone</th>
+                                    <th>role</th>
+                                    <th>salaire_day</th>
+                                    <?php
+                                }
+                                else if($manage == "client") 
+                                {
+                            ?>
+                                    <th>cin</th>
+                                    <th>phone</th>
+                                    <th>id_commande</th>
+                                    <th>adresse</th>
+                                    <th>date_commande</th>
+                            <?php
+                                }
+                            ?>
+                                <th>Action</th>
+                            <?php
+                            }
 
-                                             <?php
-                                                if($manage == "medicale")
-                                                {
-                                            ?> 
-                                                <td class="titre"><?php  echo $value["category"] ?></td>
-                                                <td class="auteur"> <?php  echo $value["prix"]?> </td>
-                                                <td class="date"><?php  echo $value["quantity"] ?></td>
-                                                <td class="titre"><?php  echo $value["expiration"] ?></td>
-                                                <td class="auteur"> <?php  echo $value["code"]  ?> </td>
+                                    $requet_1 = new crud($manage);
+                                    $execution= $requet_1->select();
+                                    $i = 1;
+                                    foreach ($execution as $value) {                                      
+                                ?>
 
-                                            <?php
-                                                }
-                                                if($manage == "employe")
-                                                {
-                                            ?> 
-                                                
-                                                <td class="titre"><?php  echo $value["cin"] ?></td>
-                                                <td class="auteur"> <?php  echo $value["phone"]?> </td>
-                                                <td class="date"><?php  echo $value["role"] ?></td>
-                                                <td class="titre"><?php  echo $value["salaire_day"] . "$"?></td>
+                            </tr>
+                                                </td>
+                                                <?php
+                                                if($manage == "medicale" || $manage == "employe" || $manage == "client")
+                                                    {
+                                                ?>
+                                                    <td class="AR"><?php  echo $i ?></td>
+                                                    <td class="AR"><?php  echo $value["name"] ?></td>
 
                                                 <?php
-                                                }
-                                                if($manage == "client")
-                                                {
-                                            ?> 
-                                                
-                                                <td class="titre"><?php  echo $value["cin"] ?></td>
-                                                <td class="auteur"> <?php  echo $value["phone"]?> </td>
-                                                <td class="date"><?php  echo $value["id_commande"] ?></td>
-                                                <td class="titre"><?php  echo $value["adresse"] ?></td>
-                                                <td class="titre"><?php  echo $value["date_commande"]?></td>
+                                                    if($manage == "medicale")
+                                                    {
+                                                ?> 
+                                                    <td class="titre"><?php  echo $value["category"] ?></td>
+                                                    <td class="auteur"> <?php  echo $value["prix"]?> </td>
+                                                    <td class="date"><?php  echo $value["quantity"] ?></td>
+                                                    <td class="titre"><?php  echo $value["expiration"] ?></td>
+                                                    <td class="auteur"> <?php  echo $value["code"]  ?> </td>
+
+                                                <?php
+                                                    }
+                                                    if($manage == "employe")
+                                                    {
+                                                ?> 
+                                                    
+                                                    <td class="titre"><?php  echo $value["cin"] ?></td>
+                                                    <td class="auteur"> <?php  echo $value["phone"]?> </td>
+                                                    <td class="date"><?php  echo $value["role"] ?></td>
+                                                    <td class="titre"><?php  echo $value["salaire_day"] . "$"?></td>
+
+                                                    <?php
+                                                    }
+                                                    if($manage == "client")
+                                                    {
+                                                ?> 
+                                                    
+                                                    <td class="titre"><?php  echo $value["cin"] ?></td>
+                                                    <td class="auteur"> <?php  echo $value["phone"]?> </td>
+                                                    <td class="date"><?php  echo $value["id_commande"] ?></td>
+                                                    <td class="titre"><?php  echo $value["adresse"] ?></td>
+                                                    <td class="titre"><?php  echo $value["date_commande"]?></td>
 
 
-                                            <?php
-                                                }
-                                            ?> 
+                                                <?php
+                                                    }
+                                                ?> 
 
-											<td>
-												<div class="icon_crud">
-													<a href="#">
-														<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z"/></svg>
-													</a>
-													<a href="#">
-														<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></svg>
-													</a>
-													<a  onclick="delete_popup(<?php echo $value['id']?>,'<?php echo $manage?>')">
-														<svg  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>
-													</a>
-												</div>
-											</td>
-
-
-                                            <?php
-                                                }
-                                            ?>  
-						</tr>
-                        <?php
-                              $i++;
-                                }
-                        ?>
+                                                <td>
+                                                    <div class="icon_crud">
+                                                        <a href="#">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z"/></svg>
+                                                        </a>
+                                                        <a href="#">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></svg>
+                                                        </a>
+                                                        <a  onclick="delete_popup(<?php echo $value['id']?>,'<?php echo $manage?>')">
+                                                            <svg  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>
+                                                        </a>
+                                                    </div>
+                                                </td>
 
 
-                </table>
+                                                <?php
+                                                    }
+                                                ?>  
+                            </tr>
+                            <?php
+                                $i++;
+                                    }
+                            ?>
+
+
+                    </table>
+                    </div>
+                    </div>
+
+
                 </div>
+                
+                <div class="insert_data">
+                    <form action="../controleur/update_insert.php?manage=<?php echo $manage?>" method="POST">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Category</label>
+                            <input type="text" class="form-control" name="category" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Prix</label>
+                            <input type="text" class="form-control" name="prix" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Quantity</label>
+                            <input type="text" class="form-control" name="quantity" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Code</label>
+                            <input type="text" class="form-control" name="code" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Expiration</label>
+                            <input type="text" class="form-control" name="expiration" id="exampleInputPassword1">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Valide</button>
+                    </form>
                 </div>
 
-
-            </div>
             </div>
 
 
